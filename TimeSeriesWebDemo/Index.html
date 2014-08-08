@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+   
+    <title>TimeSeriesDemo</title>
+</head>
+    <body>
+        <p>Demo</p>
+        <table>
+            <!--ko foreach: demoTimeSeries-->
+            <tbody>
+                <tr>
+                    <td><span data-bind="text : id"></span></td>
+                    <td><span data-bind="text : source"></span></td>
+                    <!--ko foreach: values-->
+                    <td><span data-bind="text : $data"></span></td>
+                    <!--/ko-->
+                </tr>
+            </tbody>
+            <!--/ko-->
+        </table>
+    </body>
+<script src="scripts/knockout-3.1.0.js"></script>
+<script src="scripts/app.js"></script>
+</html>
