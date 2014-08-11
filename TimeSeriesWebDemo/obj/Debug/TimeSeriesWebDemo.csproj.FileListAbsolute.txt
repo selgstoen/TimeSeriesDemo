@@ -16,3 +16,5 @@ D:\SandBox\TimeSeriesWebDemo\TimeSeriesWebDemo\bin\EntityFramework.dll
 D:\SandBox\TimeSeriesWebDemo\TimeSeriesWebDemo\bin\EntityFramework.SqlServer.dll
 D:\SandBox\TimeSeriesWebDemo\TimeSeriesWebDemo\bin\EntityFramework.xml
 D:\SandBox\TimeSeriesWebDemo\TimeSeriesWebDemo\bin\EntityFramework.SqlServer.xml
+D:\SandBox\TimeSeriesWebDemo\TimeSeriesWebDemo\bin\Statkraft.Time.dll
+D:\SandBox\TimeSeriesWebDemo\TimeSeriesWebDemo\bin\Statkraft.XTimeSeries.dll
