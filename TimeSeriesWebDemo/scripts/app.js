@@ -1,38 +1,28 @@
-﻿function DemoTimeSeries(data) {
+﻿
+
+function DemoTimeSeries(data) {
     var self = this;
     data = data || {};
 
-    self.id = data.id;
-    self.source = data.source;
-    self.values = data.values;
+    self.Id = data.Id;
+    self.Source = data.Source;
+    self.Values = data.Values;
 }
 
-function getDemoData(id) {
-    var ts = new Object();
-    ts.id = id;
-    ts.source = 'Brady';
-    ts.values = [1, 2, 3];
-
-    return ts;
+function GetDataFromServer() {
+    return app.timeseriesservice.all();
 }
 
 var ViewModel = function() {
     var self = this;
-
     self.demoTimeSeries = ko.observableArray();
 
-    function addDemoTimeSeries(data) {
-        //var jsonData = JSON.stringify(data);
-        //var mapped = ko.utils.arrayMap(jsonData, function(item) {
-        //var mapped = ko.mapping.fromJS(jsonData, function (item){
-        //    return new DemoTimeSeries(item);
-        //});
-        var m = new DemoTimeSeries(data);
-        self.demoTimeSeries.push(m);
-    }
-
-    addDemoTimeSeries(getDemoData(123));
-    addDemoTimeSeries(getDemoData(456));
+    GetDataFromServer().success(function (data) {
+        var mapped = ko.utils.arrayMap(data, function (item) {
+            return new DemoTimeSeries(item);
+        });
+        self.demoTimeSeries(mapped);
+    });;
 }
 
-ko.applyBindings(new ViewModel());
+ko.applyBindings(ViewModel);

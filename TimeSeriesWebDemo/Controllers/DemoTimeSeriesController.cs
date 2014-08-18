@@ -1,14 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-using System.Web.Http.Description;
 using TimeSeriesWebDemo.Models;
 
 namespace TimeSeriesWebDemo.Controllers
@@ -18,117 +9,124 @@ namespace TimeSeriesWebDemo.Controllers
         private TimeSeriesDemoContext db = new TimeSeriesDemoContext();
 
         // GET: api/DemoTimeSeries
-        public IQueryable<DemoTimeSeries> GetDemoTimeSeries()
+        public IEnumerable<DemoTimeSeries> GetDemoTimeSeries()
         {
-            return db.DemoTimeSeries;
+            return GetHardCoded();
         }
 
-        // GET: api/DemoTimeSeries/5
-        [ResponseType(typeof(DemoTimeSeries))]
-        public async Task<IHttpActionResult> GetDemoTimeSeries(string id)
+        private IEnumerable<DemoTimeSeries> GetHardCoded()
         {
-            DemoTimeSeries demoTimeSeries = await db.DemoTimeSeries.FindAsync(id);
-            if (demoTimeSeries == null)
-            {
-                return NotFound();
-            }
+            var tsList = new List<DemoTimeSeries> { new DemoTimeSeries { Id = "444", Source = "øl", Values = new double[] { 1, 45, 22 } }, new DemoTimeSeries { Id = "333", Source = "vin", Values = new double[] { 1, 45, 22 } } };
 
-            return Ok(demoTimeSeries);
+            return tsList;
         }
 
-        // PUT: api/DemoTimeSeries/5
-        [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutDemoTimeSeries(string id, DemoTimeSeries demoTimeSeries)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    // GET: api/DemoTimeSeries/5
+        //[ResponseType(typeof(DemoTimeSeries))]
+        //public async Task<IHttpActionResult> GetDemoTimeSeries(string id)
+        //{
+        //    DemoTimeSeries demoTimeSeries = await db.DemoTimeSeries.FindAsync(id);
+        //    if (demoTimeSeries == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (id != demoTimeSeries.Id)
-            {
-                return BadRequest();
-            }
+        //    return Ok(demoTimeSeries);
+        //}
 
-            db.Entry(demoTimeSeries).State = EntityState.Modified;
+        //// PUT: api/DemoTimeSeries/5
+        //[ResponseType(typeof(void))]
+        //public async Task<IHttpActionResult> PutDemoTimeSeries(string id, DemoTimeSeries demoTimeSeries)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DemoTimeSeriesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    if (id != demoTimeSeries.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    db.Entry(demoTimeSeries).State = EntityState.Modified;
 
-        // POST: api/DemoTimeSeries
-        [ResponseType(typeof(DemoTimeSeries))]
-        public async Task<IHttpActionResult> PostDemoTimeSeries(DemoTimeSeries demoTimeSeries)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!DemoTimeSeriesExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            db.DemoTimeSeries.Add(demoTimeSeries);
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-            try
-            {
-                await db.SaveChangesAsync();
-            }
-            catch (DbUpdateException)
-            {
-                if (DemoTimeSeriesExists(demoTimeSeries.Id))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //// POST: api/DemoTimeSeries
+        //[ResponseType(typeof(DemoTimeSeries))]
+        //public async Task<IHttpActionResult> PostDemoTimeSeries(DemoTimeSeries demoTimeSeries)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            return CreatedAtRoute("DefaultApi", new { id = demoTimeSeries.Id }, demoTimeSeries);
-        }
+        //    db.DemoTimeSeries.Add(demoTimeSeries);
 
-        // DELETE: api/DemoTimeSeries/5
-        [ResponseType(typeof(DemoTimeSeries))]
-        public async Task<IHttpActionResult> DeleteDemoTimeSeries(string id)
-        {
-            DemoTimeSeries demoTimeSeries = await db.DemoTimeSeries.FindAsync(id);
-            if (demoTimeSeries == null)
-            {
-                return NotFound();
-            }
+        //    try
+        //    {
+        //        await db.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (DemoTimeSeriesExists(demoTimeSeries.Id))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            db.DemoTimeSeries.Remove(demoTimeSeries);
-            await db.SaveChangesAsync();
+        //    return CreatedAtRoute("DefaultApi", new { id = demoTimeSeries.Id }, demoTimeSeries);
+        //}
 
-            return Ok(demoTimeSeries);
-        }
+        //// DELETE: api/DemoTimeSeries/5
+        //[ResponseType(typeof(DemoTimeSeries))]
+        //public async Task<IHttpActionResult> DeleteDemoTimeSeries(string id)
+        //{
+        //    DemoTimeSeries demoTimeSeries = await db.DemoTimeSeries.FindAsync(id);
+        //    if (demoTimeSeries == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //    db.DemoTimeSeries.Remove(demoTimeSeries);
+        //    await db.SaveChangesAsync();
 
-        private bool DemoTimeSeriesExists(string id)
-        {
-            return db.DemoTimeSeries.Count(e => e.Id == id) > 0;
-        }
+        //    return Ok(demoTimeSeries);
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
+
+        //private bool DemoTimeSeriesExists(string id)
+        //{
+        //    return db.DemoTimeSeries.Count(e => e.Id == id) > 0;
+        //}
     }
 }

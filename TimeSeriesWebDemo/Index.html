@@ -10,9 +10,9 @@
             <!--ko foreach: demoTimeSeries-->
             <tbody>
                 <tr>
-                    <td><span data-bind="text : id"></span></td>
-                    <td><span data-bind="text : source"></span></td>
-                    <!--ko foreach: values-->
+                    <td><span data-bind="text : Id"></span></td>
+                    <td><span data-bind="text : Source"></span></td>
+                    <!--ko foreach: Values-->
                     <td><span data-bind="text : $data"></span></td>
                     <!--/ko-->
                 </tr>
@@ -21,5 +21,8 @@
         </table>
     </body>
 <script src="scripts/knockout-3.1.0.js"></script>
+<script src="scripts/knockout.mapping-latest.debug.js"></script>
+<script src="scripts/jquery-2.1.1.min.js"></script>
+<script src="scripts/app.service.timeseries.js"></script>
 <script src="scripts/app.js"></script>
 </html>
