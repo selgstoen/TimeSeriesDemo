@@ -1,28 +1,36 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-   
-    <title>TimeSeriesDemo</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <title>Time Series Demo</title>
 </head>
-    <body>
-        <p>Demo</p>
-        <table>
-            <!--ko foreach: demoTimeSeries-->
-            <tbody>
-                <tr>
-                    <td><span data-bind="text : Id"></span></td>
-                    <td><span data-bind="text : Source"></span></td>
-                    <!--ko foreach: Values-->
-                    <td><span data-bind="text : $data"></span></td>
-                    <!--/ko-->
-                </tr>
-            </tbody>
-            <!--/ko-->
-        </table>
-    </body>
+<body>
+    <h1>Various time series</h1>
+    <table class="table table-bordered table-condensed">
+        <thead>
+            <tr><th>Id</th><th>Source</th><th class="text-center" colspan="24">HOURS</th></tr>
+        </thead>
+        <!--ko foreach: demoTimeSeries-->
+        <tbody>
+            <tr>
+                <td><span data-bind="text : Id"></span></td>
+                <td><span data-bind="text : Source"></span></td>
+                <!--ko foreach: Values-->
+                <td><span data-bind="text : $data"></span></td>
+                <!--/ko-->
+            </tr>
+        </tbody>
+        <!--/ko-->
+    </table>
+</body>
 <script src="scripts/knockout-3.1.0.js"></script>
 <script src="scripts/knockout.mapping-latest.debug.js"></script>
 <script src="scripts/jquery-2.1.1.min.js"></script>
 <script src="scripts/app.service.timeseries.js"></script>
 <script src="scripts/app.js"></script>
+<script src="scripts/bootstrap.js"></script>
 </html>
